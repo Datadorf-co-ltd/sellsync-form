@@ -33,7 +33,7 @@ export default function PdpaModal({ open, onOpenChange }: PdpaModalProps) {
             <h3 className="font-semibold text-foreground mb-1">1. วัตถุประสงค์การเก็บข้อมูล</h3>
             <p className="text-muted-foreground">
               บริษัท ดาต้าดอร์ฟ จำกัด ("บริษัท") เก็บรวบรวมข้อมูลส่วนบุคคลของท่านเพื่อวัตถุประสงค์
-              ในการติดต่อกลับ นำเสนอผลิตภัณฑ์ SellSync และให้บริการที่เกี่ยวข้องแก่ท่าน
+              ในการติดต่อกลับ นำเสนอผลิตภัณฑ์ Mydorf และให้บริการที่เกี่ยวข้องแก่ท่าน
             </p>
           </section>
 
@@ -68,7 +68,7 @@ export default function PdpaModal({ open, onOpenChange }: PdpaModalProps) {
             <h3 className="font-semibold text-foreground mb-1">5. สิทธิ์ของเจ้าของข้อมูล</h3>
             <p className="text-muted-foreground">
               ท่านมีสิทธิ์เข้าถึง แก้ไข ลบ หรือขอถอนความยินยอมในการใช้ข้อมูลส่วนบุคคลได้ทุกเมื่อ
-              โดยติดต่อมาที่ <span className="text-primary font-medium">privacy@datadorf.co.th</span>
+              โดยติดต่อมาที่ <span className="text-primary font-medium">contact@datadorf.co.th</span>
             </p>
           </section>
 

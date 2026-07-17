@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
+import { Loader2, Gift } from "lucide-react";
 
 import { formSchema, FIELDS, type FormValues } from "@/lib/schema";
 import { submitInterestForm } from "@/app/form/actions";
@@ -21,24 +21,33 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import PdpaModal from "@/components/PdpaModal";
+import TrialInfoModal from "@/components/TrialInfoModal";
 
-export default function InterestForm() {
+export default function InterestForm({
+  openTrial = false,
+}: {
+  openTrial?: boolean;
+}) {
   const [pdpaOpen, setPdpaOpen] = useState(false);
+  const [trialOpen, setTrialOpen] = useState(openTrial);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fullName:     "",
-      position:     "",
-      email:        "",
-      phone:        "",
-      lineId:       "",
+      fullName: "",
+      position: "",
+      email: "",
+      phone: "",
+      lineId: "",
       pdpaAccepted: false,
     },
   });
 
   const { isSubmitting } = form.formState;
-  const pdpaAccepted = useWatch({ control: form.control, name: "pdpaAccepted" });
+  const pdpaAccepted = useWatch({
+    control: form.control,
+    name: "pdpaAccepted",
+  });
 
   async function onSubmit(values: FormValues) {
     const result = await submitInterestForm(values);
@@ -61,21 +70,51 @@ export default function InterestForm() {
         <div className="mb-8 text-center">
           <div className="inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 shadow-lg shadow-brand-200">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/img/logo.png" alt="Datadorf" className="w-16 h-16 object-contain" />
+            <img
+              src="/img/logo.png"
+              alt="Datadorf"
+              className="w-16 h-16 object-contain"
+            />
           </div>
           <h1 className="text-2xl font-semibold text-foreground tracking-tight">
-            ฟอร์มผู้สนใจใช้งาน Sellsync
+            ฟอร์มผู้สนใจใช้งาน Mydorf
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
             กรอกข้อมูลด้านล่าง เราจะติดต่อกลับภายหลัง
           </p>
         </div>
 
+        {/* Free trial banner */}
+        {openTrial && (
+          <button
+            type="button"
+            onClick={() => setTrialOpen(true)}
+            className="mb-5 w-full flex items-center gap-3 rounded-xl border border-brand-100 bg-brand-50/70 px-4 py-3 text-left transition-colors hover:bg-brand-50 cursor-pointer"
+          >
+            <span className="flex-none flex items-center justify-center w-9 h-9 rounded-full bg-primary text-primary-foreground">
+              <Gift className="w-4 h-4" />
+            </span>
+            <span className="flex-1">
+              <span className="block text-sm font-semibold text-foreground">
+                ทดลองใช้งานฟรี 14 วัน
+              </span>
+              <span className="block text-xs text-muted-foreground">
+                ดูขั้นตอนการลงทะเบียนทดลองใช้
+              </span>
+            </span>
+            <span className="flex-none text-sm text-primary font-medium underline underline-offset-2">
+              ดูรายละเอียด
+            </span>
+          </button>
+        )}
+
         {/* Card */}
         <div className="bg-card rounded-2xl border border-brand-100 shadow-md shadow-brand-100/60 p-6 sm:p-8">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
-
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex flex-col gap-5"
+            >
               {FIELDS.map((field) => (
                 <FormField
                   key={field.name}
@@ -99,7 +138,9 @@ export default function InterestForm() {
                         />
                       </FormControl>
                       {field.description && (
-                        <FormDescription className="pl-2">{field.description}</FormDescription>
+                        <FormDescription className="pl-2">
+                          {field.description}
+                        </FormDescription>
                       )}
                       <FormMessage />
                     </FormItem>
@@ -123,7 +164,10 @@ export default function InterestForm() {
                           className="mt-0.5"
                         />
                       </FormControl>
-                      <label htmlFor="pdpa" className="text-sm text-muted-foreground leading-snug cursor-pointer select-none">
+                      <label
+                        htmlFor="pdpa"
+                        className="text-sm text-muted-foreground leading-snug cursor-pointer select-none"
+                      >
                         ฉันยอมรับ{" "}
                         <button
                           type="button"
@@ -131,8 +175,8 @@ export default function InterestForm() {
                           className="text-primary underline underline-offset-2 hover:text-primary/80 font-medium"
                         >
                           นโยบายความเป็นส่วนตัว (PDPA)
-                        </button>
-                        {" "}และยินยอมให้เก็บข้อมูลส่วนบุคคล
+                        </button>{" "}
+                        และยินยอมให้เก็บข้อมูลส่วนบุคคล
                       </label>
                     </div>
                     <FormMessage />
@@ -155,12 +199,12 @@ export default function InterestForm() {
                   "ส่งข้อมูล"
                 )}
               </Button>
-
             </form>
           </Form>
         </div>
 
         <PdpaModal open={pdpaOpen} onOpenChange={setPdpaOpen} />
+        <TrialInfoModal open={trialOpen} onOpenChange={setTrialOpen} />
 
         {/* <p className="mt-6 text-center text-xs text-muted-foreground">
           ข้อมูลของคุณจะถูกเก็บรักษาเป็นความลับ
