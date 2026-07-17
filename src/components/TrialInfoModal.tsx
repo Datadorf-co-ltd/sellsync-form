@@ -1,6 +1,6 @@
 "use client";
 
-import { Gift } from "lucide-react";
+import { Gift, Phone } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -55,7 +55,7 @@ export default function TrialInfoModal({ open, onOpenChange }: TrialInfoModalPro
           </div>
           <DialogTitle>ทดลองใช้งานฟรี 14 วัน</DialogTitle>
           <DialogDescription>
-            เริ่มต้นใช้งาน SellSync ได้ทันที ไม่มีค่าใช้จ่ายในช่วงทดลอง
+            เริ่มต้นใช้งาน Mydorf ได้ทันที ไม่มีค่าใช้จ่ายในช่วงทดลอง
           </DialogDescription>
         </DialogHeader>
 
@@ -83,6 +83,21 @@ export default function TrialInfoModal({ open, onOpenChange }: TrialInfoModalPro
               อีเมลที่ใช้สมัครบัญชี ควรเป็นอีเมลเดียวกันกับที่กรอกในฟอร์ม
               เพื่อให้ทีมงานปรับ Package ให้ได้อย่างถูกต้อง
             </p>
+          </div>
+
+          <div className="flex items-center gap-3 rounded-lg border border-brand-100 bg-card p-4">
+            <span className="flex-none flex items-center justify-center w-9 h-9 rounded-full bg-brand-50 text-primary">
+              <Phone className="w-4 h-4" />
+            </span>
+            <div>
+              <p className="text-xs text-muted-foreground">มีข้อสงสัยหรือพบปัญหา ติดต่อเราได้ที่</p>
+              <a
+                href="tel:+66956947896"
+                className="text-base font-semibold text-primary hover:text-primary/80"
+              >
+                095-694-7896
+              </a>
+            </div>
           </div>
         </DialogBody>
 
