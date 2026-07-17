@@ -32,7 +32,7 @@ export default function PdpaModal({ open, onOpenChange }: PdpaModalProps) {
           <section>
             <h3 className="font-semibold text-foreground mb-1">1. วัตถุประสงค์การเก็บข้อมูล</h3>
             <p className="text-muted-foreground">
-              บริษัท ดาต้าดอร์ฟ จำกัด ("บริษัท") เก็บรวบรวมข้อมูลส่วนบุคคลของท่านเพื่อวัตถุประสงค์
+              บริษัท ดาต้าดอร์ฟ จำกัด (&ldquo;บริษัท&rdquo;) เก็บรวบรวมข้อมูลส่วนบุคคลของท่านเพื่อวัตถุประสงค์
               ในการติดต่อกลับ นำเสนอผลิตภัณฑ์ Mydorf และให้บริการที่เกี่ยวข้องแก่ท่าน
             </p>
           </section>
